@@ -1,0 +1,16 @@
+li.active a{
+  background: #ae255b !important;
+}
+
+.btn-medium {
+  color: #fff !important;
+  background: #ae255b !important;
+}
+
+.ng-invalid.ng-dirty {
+  border-color: #FA78fE;
+}
+
+.ng-valid.ng-dirty {
+  border-color: #78FA89;
+}
