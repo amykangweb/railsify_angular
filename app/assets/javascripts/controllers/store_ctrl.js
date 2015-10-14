@@ -7,18 +7,20 @@
 
     $scope.index = function(){
       $http.get('/api/products').success(function(data){
-        $scope.products = data;
+        $scope.products = data.products;
       });
     };
 
-    $scope.create = function(gem) {
-      $http.post('/products', { product: gem })
+    $scope.create = function(product) {
+      console.log(product);
+      $http.post('api/products', { product: product })
         .success(function(data) {
-          $scope.products.push(data.gem);
-        })
-        .error(function(data) {
-          $scope.errors
-        });
+          $scope.products.push(data.product);
+          $scope.newGem.$setPristine();
+      })
+      .error(function(data) {
+        $scope.errors
+      });
     };
   }]);
 
