@@ -2,14 +2,14 @@
   var app = angular.module('store', ['store-products']);
 
   app.controller('StoreController', ['$http', function($http){
-    this.products = gems;
-    // var store = this;
+    // this.products = gems;
+    var store = this;
 
-    // store.products = [];
+    store.products = [];
 
-    // $http.get('products.json').success(function(data){
-    //   store.products = data;
-    // });
+    $http.get('http://localhost:3000/api/products').success(function(data){
+      store.products = data;
+    });
   }]);
 
   app.controller("ReviewController", function(){
