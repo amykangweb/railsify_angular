@@ -1,11 +1,26 @@
-  <div ng-controller="StoreController as store" class="container">
+  <div ng-controller="StoreController as store" ng-init="index()" class="container">
 
     <h1 class="text-center">Flatlander Gems</h1>
 
     <ul class="list-group">
-      <li class="list-group-item" ng-repeat="product in store.products">
+      <li class="list-group-item" ng-repeat="product in products">
         <product-title></product-title>
         <product-panels></product-panels>
       </li>
     </ul>
+
+    <section>
+      <h1 class="text-center">New Gem</h1>
+      <div class="panel">
+        <label for="name">Name</label>
+        <input type="text" name="name" ng-model="newProduct.name" class="form-control" />
+        <label for="price">Price</label>
+        <input type="text" name="price" ng-model="newProduct.price" class="form-control" />
+        <label for="description">Description</label>
+        <p>
+        <textarea ng-model="newProduct.description" name="description" class="form-control"></textarea>
+        </p>
+        <input type="submit" value="Create Product" class="btn btn-medium" ng-submit="create(newProduct)" />
+      </div>
+    </section>
   </div>

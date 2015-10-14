@@ -1,15 +1,9 @@
 (function(){
   var app = angular.module('store', ['store-products']);
 
-  app.controller('StoreController', ['$http', function($http){
-    // this.products = gems;
-    var store = this;
-
-    store.products = [];
-
-    $http.get('http://localhost:3000/api/products').success(function(data){
-      store.products = data;
-    });
+  app.config(['$httpProvider', function($httpProvider) {
+    authToken = $("meta[name=\"csrf-token\"]").attr("content");
+    $httpProvider.defaults.headers.common["X-CSRF-TOKEN"] = authToken;
   }]);
 
   app.controller("ReviewController", function(){
@@ -19,49 +13,5 @@
       this.review = {};
     };
   });
-
-  var gems = [
-    {
-      name: 'Dodecahedron',
-      price: 2.95,
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      images: [
-        {
-          full: '<%= asset_path("gem-03.gif") %>',
-          thumb: '<%= asset_path("gem-03.gif") %>'
-        }
-      ],
-      reviews: [
-        {
-          stars: 5,
-          author: "Jane",
-          body: "I love this product!"
-        },
-        {
-          stars: 1,
-          author: "Wilbur",
-          body: "It sucks."
-        }
-      ]
-    },
-    {
-      name: "Pentagonal Gem",
-      price: 5.95,
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      images: [
-        {
-          full: '<%= asset_path("gem-01.gif") %>',
-          thumb: '<%= asset_path("gem-01.gif") %>'
-        }
-      ],
-      reviews: [
-        {
-          stars: 1,
-          author: "John",
-          body: "Don't buy it. Not worth it."
-        }
-      ]
-    }
-  ];
 
 })();
