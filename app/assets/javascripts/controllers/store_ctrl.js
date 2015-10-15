@@ -6,7 +6,7 @@
     $scope.products = [];
 
     $scope.index = function(){
-      $http.get('/api/products').success(function(data){
+      $http.get('api/products').success(function(data){
         $scope.products = data.products;
       });
     };
@@ -18,7 +18,16 @@
           $scope.newGem.$setPristine();
       })
       .error(function(data) {
-        $scope.errors
+        $scope.errors;
+      });
+    };
+
+    $scope.update = function(product) {
+      $http.path('api/products' + product.id, { product: product })
+        .success(function(data) {
+
+      }).error(function(data) {
+        $scope.errors;
       });
     };
   }]);
