@@ -12,7 +12,6 @@
     };
 
     $scope.create = function(product) {
-      console.log(product);
       $http.post('api/products', { product: product })
         .success(function(data) {
           $scope.products.push(data.product);

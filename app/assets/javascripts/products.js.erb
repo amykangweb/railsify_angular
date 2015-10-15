@@ -24,4 +24,11 @@
       controllerAs: 'panel'
     };
   });
+
+  app.directive('productForm', function(){
+    return {
+      restrict: 'E',
+      templateUrl: '<%= asset_path("product-form.html") %>',
+    };
+  });
 })();
