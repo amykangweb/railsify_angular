@@ -5,7 +5,7 @@ class ApiSessionToken
     @store ||= Hash.new
   end
 
-  def initalize(existing_token=nil)
+  def initialize(existing_token=nil)
     @token = existing_token
     self.last_seen = Time.now unless expired?
   end
