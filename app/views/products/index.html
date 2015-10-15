@@ -1,0 +1,14 @@
+  <div ng-controller="StoreController as store" ng-init="index()" class="container">
+
+    <h1 class="text-center">Flatlander Gems</h1>
+
+    <ul class="list-group">
+      <li class="list-group-item" ng-repeat="product in products">
+        <product-title></product-title>
+        <product-panels></product-panels>
+        <!-- Put Edit Form here -->
+      </li>
+    </ul>
+
+    <product-form></product-form>
+  </div>

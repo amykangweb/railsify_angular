@@ -1,0 +1,18 @@
+(function(){
+  var app = angular.module('store', ['store-products']);
+
+  app.config(['$httpProvider', function($httpProvider) {
+    authToken = $("meta[name=\"csrf-token\"]").attr("content");
+    $httpProvider.defaults.headers.common["X-CSRF-TOKEN"] = authToken;
+    $httpProvider.defaults.headers.common.Accept = 'application/json';
+  }]);
+
+  app.controller("ReviewController", function(){
+    this.review = {};
+    this.addReview = function(product) {
+      product.reviews.push(this.review);
+      this.review = {};
+    };
+  });
+
+})();
