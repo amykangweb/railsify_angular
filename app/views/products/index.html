@@ -1,6 +1,15 @@
   <div ng-controller="StoreController as store" ng-init="index()" class="container">
-
     <h1 class="text-center">Flatlander Gems</h1>
+
+    <div class="panel">
+      <form ng-submit="session(user)" name="user">
+        <label for="name">Name</label>
+        <input type="text" name="name" ng-model="user.username" class="form-control" />
+        <label for="price">Password</label>
+        <input type="text" name="price" ng-model="user.password" class="form-control" />
+        <input type="submit" value="Log In" class="btn btn-medium" />
+      </form>
+    </div>
 
     <ul class="list-group">
       <li class="list-group-item" ng-repeat="product in products">

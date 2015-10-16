@@ -6,10 +6,10 @@ class User < ActiveRecord::Base
   validates_presence_of :password, on: :create
 
   def password=(secret)
-    write_attribute(:password, BCrypt::Password.create(secret))
+    self.password_digest = BCrypt::Password.create(secret)
   end
 
   def self.authenticate_with_password!(user, attempt)
-    user && Bcrypt::Password.new(user.password) == attempt
+    user.authenticate(attempt) == false ? false : true
   end
 end

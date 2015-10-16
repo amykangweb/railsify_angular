@@ -9,7 +9,7 @@ class Api::SessionsController < Api::ApiController
     if params[:username] && params[:password]
       @user = User.find_by_username(params[:username])
       token.user = @user
-      if @user.password == params[:password] || _provided_valid_api_key?
+      if _provided_valid_password? || _provided_valid_api_key?
         render json: token
       else
         render json: { message: "Username / Password combo not valid."}
