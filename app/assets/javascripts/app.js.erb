@@ -1,5 +1,5 @@
 (function(){
-  var app = angular.module('store', ['store-products']);
+  var app = angular.module('store', ['store-products', 'ngCookies']);
 
   app.config(['$httpProvider', function($httpProvider) {
     authToken = $("meta[name=\"csrf-token\"]").attr("content");

@@ -2,11 +2,20 @@
 
   var app = angular.module('store');
 
-   app.controller('StoreController', ['$scope', '$http', function($scope, $http){
+   app.controller('StoreController', ['$scope', '$http', '$cookies', function($scope, $http, $cookies){
+    $scope.loggedIn = $cookies.get('loggedin');
     $scope.products = [];
     $scope.username = "none";
     $scope.token;
     $scope.admin;
+
+    if($scope.loggedIn == "true") {
+
+      $scope.username = $cookies.get('username');
+      $scope.token = $cookies.get('token');
+      $scope.admin = $cookies.get('admin');
+
+    };
 
   $scope.flash = function(){
     if ($scope.username != "none") {
@@ -16,12 +25,39 @@
     }
   };
 
+  $scope.isAdmin = function(){
+    if($scope.admin === "true") {
+      return true;
+    }else{
+      return false;
+    }
+  };
+
    $scope.session = function(user){
       $http.post('api/sessions' + "?username=" + user.username + "&" + "password=" + user.password).success(function(data){
-        $scope.username = data.user.username;
-        $scope.token = data.token;
-        $scope.admin = data.user.admin;
+        $cookies.put('loggedin', 'true');
+        $cookies.put('username', data.user.username);
+        $cookies.put('admin', data.user.admin);
+        $cookies.put('token', data.token);
+        $scope.username = $cookies.get('username');
+        $scope.token = $cookies.get('token');
+        $scope.admin = $cookies.get('admin');
+        // $scope.username = data.user.username;
+        // $scope.token = data.token;
+        // $scope.admin = data.user.admin;
       });
+    };
+
+    $scope.logout = function(){
+      $scope.username = "none";
+      $cookies.remove('loggedin');
+      $cookies.put('username', 'none');
+      $cookies.remove('token');
+      $cookies.put('admin', 'false');
+      $scope.loggedIn = $cookies.get('loggedin');
+      $scope.username = $cookies.get('username');
+      $scope.token = $cookies.get('token');
+      $scope.admin = $cookies.get('admin');
     };
 
     $scope.index = function(){

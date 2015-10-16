@@ -3,10 +3,13 @@
 
     <div ng-show="flash()">
       <h3>Welcome back {{username}}!</h3>
-      <div ng-show="admin">
+      <div ng-show="isAdmin()">
         <h4>Admin</h4>
       </div>
+      <button class="btn btn-medium" ng-click="logout()">Log Out</button>
     </div>
+
+    <p></p>
 
     <div class="panel">
       <form ng-submit="session(user)" name="user">
