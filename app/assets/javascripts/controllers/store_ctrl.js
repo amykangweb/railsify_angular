@@ -42,22 +42,24 @@
         $scope.username = $cookies.get('username');
         $scope.token = $cookies.get('token');
         $scope.admin = $cookies.get('admin');
-        // $scope.username = data.user.username;
-        // $scope.token = data.token;
-        // $scope.admin = data.user.admin;
       });
     };
 
-    $scope.logout = function(){
-      $scope.username = "none";
-      $cookies.remove('loggedin');
-      $cookies.put('username', 'none');
-      $cookies.remove('token');
-      $cookies.put('admin', 'false');
-      $scope.loggedIn = $cookies.get('loggedin');
-      $scope.username = $cookies.get('username');
-      $scope.token = $cookies.get('token');
-      $scope.admin = $cookies.get('admin');
+    $scope.logout = function(username){
+      $http.delete('api/sessions' + '?username=' + $scope.username).success(function(data){
+        $scope.username = "none";
+        $cookies.remove('loggedin');
+        $cookies.put('username', 'none');
+        $cookies.remove('token');
+        $cookies.put('admin', 'false');
+        $scope.loggedIn = $cookies.get('loggedin');
+        $scope.username = $cookies.get('username');
+        $scope.token = $cookies.get('token');
+        $scope.admin = $cookies.get('admin');
+      }).error(function(data){
+        alert("Something went wrong.");
+        $scope.errors;
+      });
     };
 
     $scope.index = function(){
@@ -73,6 +75,7 @@
             $scope.newGem.$setPristine();
         })
         .error(function(data) {
+          alert("Something went wrong.");
           $scope.errors;
         });
       };
@@ -82,6 +85,7 @@
         .success(function(data) {
 
       }).error(function(data) {
+        alert("Something went wrong.");
         $scope.errors;
       });
     };

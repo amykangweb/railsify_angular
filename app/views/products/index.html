@@ -6,12 +6,12 @@
       <div ng-show="isAdmin()">
         <h4>Admin</h4>
       </div>
-      <button class="btn btn-medium" ng-click="logout()">Log Out</button>
+      <button class="btn btn-medium" ng-click="logout(username)">Log Out</button>
     </div>
 
     <p></p>
 
-    <div class="panel">
+    <div class="panel" ng-show="!flash()">
       <form ng-submit="session(user)" name="user">
         <label for="name">Name</label>
         <input type="text" name="name" ng-model="user.username" class="form-control" />
@@ -29,5 +29,5 @@
       </li>
     </ul>
 
-    <product-form ng-show="admin"></product-form>
+    <product-form ng-show="isAdmin()"></product-form>
   </div>
