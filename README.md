@@ -8,7 +8,7 @@ https://desolate-crag-1615.herokuapp.com/
 
 <h2>Description</h2>
 
-Code School Angular Gemstone Store on Rails.
+Code School Angular Gemstone Store on Rails. With custom authorization using AngularJS cookies and MicroToken gem.
 
 <h2>Resources</h2>
 
@@ -17,3 +17,5 @@ https://www.codeschool.com/courses/shaping-up-with-angular-js
 http://stackoverflow.com/questions/20988641/how-to-clear-cookies-in-angular-js
 
 http://maffrigby.com/maintaining-session-info-in-angularjs-when-you-refresh-the-page/
+
+https://railsforum.com/topic/940-route-to-destroy-action/
