@@ -1,16 +1,15 @@
 class User < ActiveRecord::Base
-  after_initialize :_set_defaults
+  has_secure_password
+
   validates_presence_of :username, on: :create
   validates_uniqueness_of :username, on: :create
   validates_presence_of :password, on: :create
 
-  def password=(password)
-    write_attribute(:password, BCrypt::Password.create(password))
+  def password=(secret)
+    self.password_digest = BCrypt::Password.create(secret)
   end
 
-  private
-
-  def _set_defaults
-    self.api_secret ||= MicroToken.generate(128)
+  def self.authenticate_with_password!(user, attempt)
+    user.authenticate(attempt) == false ? false : true
   end
 end
