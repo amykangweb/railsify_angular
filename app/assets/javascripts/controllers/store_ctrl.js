@@ -4,12 +4,23 @@
 
    app.controller('StoreController', ['$scope', '$http', function($scope, $http){
     $scope.products = [];
-    $scope.token = "";
+    $scope.username = "none";
+    $scope.token;
+    $scope.admin;
+
+  $scope.flash = function(){
+    if ($scope.username != "none") {
+      return true;
+    }else{
+      return false;
+    }
+  };
 
    $scope.session = function(user){
       $http.post('api/sessions' + "?username=" + user.username + "&" + "password=" + user.password).success(function(data){
+        $scope.username = data.username;
         $scope.token = data.token;
-        console.log(data);
+        $scope.admin = data.admin;
       });
     };
 
@@ -20,13 +31,12 @@
     };
 
     $scope.create = function(product) {
-        $http.post('api/products' + "?" + "api_key=" + $scope.token, { product: product })
+        $http.post('api/products' + "?" + "api_secret=" + $scope.token + "&" + "username=" + $scope.username, { product: product })
           .success(function(data) {
             $scope.products.push(data.product);
             $scope.newGem.$setPristine();
         })
         .error(function(data) {
-          alert($scope.token);
           $scope.errors;
         });
       };

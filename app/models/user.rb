@@ -1,15 +1,14 @@
 class User < ActiveRecord::Base
-  has_secure_password
 
-  validates_presence_of :username, on: :create
-  validates_uniqueness_of :username, on: :create
-  validates_presence_of :password, on: :create
-
-  def password=(secret)
-    self.password_digest = BCrypt::Password.create(secret)
+  def admin?
+    self.admin
   end
 
-  def self.authenticate_with_password!(user, attempt)
-    user.authenticate(attempt) == false ? false : true
+  def password=(password)
+    self.password_digest = BCrypt::Password.create(password)
+  end
+
+  def is_password?(password)
+    BCrypt::Password.new(self.password_digest) == password
   end
 end

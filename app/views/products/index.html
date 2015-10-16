@@ -1,6 +1,13 @@
   <div ng-controller="StoreController as store" ng-init="index()" class="container">
     <h1 class="text-center">Flatlander Gems</h1>
 
+    <div ng-show="flash()">
+      <h3>Welcome back {{username}}!</h3>
+      <div ng-show="admin">
+        <h4>Admin</h4>
+      </div>
+    </div>
+
     <div class="panel">
       <form ng-submit="session(user)" name="user">
         <label for="name">Name</label>
@@ -19,5 +26,5 @@
       </li>
     </ul>
 
-    <product-form></product-form>
+    <product-form ng-show="admin"></product-form>
   </div>
