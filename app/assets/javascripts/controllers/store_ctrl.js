@@ -18,9 +18,9 @@
 
    $scope.session = function(user){
       $http.post('api/sessions' + "?username=" + user.username + "&" + "password=" + user.password).success(function(data){
-        $scope.username = data.username;
+        $scope.username = data.user.username;
         $scope.token = data.token;
-        $scope.admin = data.admin;
+        $scope.admin = data.user.admin;
       });
     };
 

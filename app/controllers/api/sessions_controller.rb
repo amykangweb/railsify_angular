@@ -5,7 +5,7 @@ class Api::SessionsController < Api::ApiController
     @user.api_secret = generate_token
     @user.save
     if @user.is_password?(params[:password])
-      render json: { "token": @user.api_secret, "username": @user.username, "admin": @user.admin }
+      render json: { "token": @user.api_secret, "user": @user }
     else
       render json: { "error": "Username\Password combination invalid." }
     end
