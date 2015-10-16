@@ -13,3 +13,7 @@ Code School Angular Gemstone Store on Rails.
 <h2>Resources</h2>
 
 https://www.codeschool.com/courses/shaping-up-with-angular-js
+
+http://stackoverflow.com/questions/20988641/how-to-clear-cookies-in-angular-js
+
+http://maffrigby.com/maintaining-session-info-in-angularjs-when-you-refresh-the-page/

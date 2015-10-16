@@ -15,7 +15,7 @@ class Api::SessionsController < Api::ApiController
     @user = User.find_by_username(params[:username])
     @user.api_secret = generate_token
     @user.save
-    render json: { "success": "Successfully logged out." }
+    render json: { "message": "Logged out successfully." }
   end
 
   private

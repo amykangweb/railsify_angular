@@ -47,8 +47,8 @@
       });
     };
 
-    $scope.logout = function(){
-      $http.delete('api/sessions' + "?username=" + $scope.username).success(function(data){
+    $scope.logout = function(username){
+      $http.delete('api/sessions' + '?username=' + $scope.username).success(function(data){
         $scope.username = "none";
         $cookies.remove('loggedin');
         $cookies.put('username', 'none');
@@ -60,7 +60,7 @@
         $scope.admin = $cookies.get('admin');
       }).error(function(data) {
         alert("Something went wrong.");
-      })
+      });
     };
 
 
@@ -87,6 +87,7 @@
         .success(function(data) {
 
       }).error(function(data) {
+        alert("Something went wrong.");
         $scope.errors;
       });
     };
