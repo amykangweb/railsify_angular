@@ -42,6 +42,8 @@
         $scope.username = $cookies.get('username');
         $scope.token = $cookies.get('token');
         $scope.admin = $cookies.get('admin');
+      }).error(function(data){
+        alert("Something went wrong.");
       });
     };
 
@@ -56,11 +58,11 @@
         $scope.username = $cookies.get('username');
         $scope.token = $cookies.get('token');
         $scope.admin = $cookies.get('admin');
-      }).error(function(data){
+      }).error(function(data) {
         alert("Something went wrong.");
-        $scope.errors;
       });
     };
+
 
     $scope.index = function(){
       $http.get('api/products').success(function(data){

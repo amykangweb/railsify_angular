@@ -11,7 +11,7 @@ class Api::ProductsController < Api::ApiController
       product.save
       render json: product, status: :created
     else
-      render json: product.errors, status: :unprocessable_entity
+      render json: {"error": "Could not create gem, check validations"}, status: :unprocessable_entity
     end
   end
 
