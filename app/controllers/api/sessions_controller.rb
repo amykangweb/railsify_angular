@@ -11,6 +11,13 @@ class Api::SessionsController < Api::ApiController
     end
   end
 
+  def destroy
+    @user = User.find_by_username(params[:username])
+    @user.api_secret = generate_token
+    @user.save
+    render json: { "success": "Successfully logged out." }
+  end
+
   private
 
   def generate_token
