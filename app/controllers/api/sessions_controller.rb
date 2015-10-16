@@ -1,14 +1,19 @@
 class Api::SessionsController < Api::ApiController
 
   def create
-    token = MicroToken.generate(128)
     @user = User.find_by_username(params[:username])
-    @user.api_secret = token
+    @user.api_secret = generate_token
     @user.save
     if @user.is_password?(params[:password])
-      render json: { "token": token, "username": @user.username, "admin": @user.admin }
+      render json: { "token": @user.api_secret, "username": @user.username, "admin": @user.admin }
     else
       render json: { "error": "Username\Password combination invalid." }
     end
+  end
+
+  private
+
+  def generate_token
+    @user.admin? ? MicroToken.generate(128) : nil
   end
 end
