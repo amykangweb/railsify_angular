@@ -10,6 +10,12 @@ https://desolate-crag-1615.herokuapp.com/
 
 Code School Angular Gemstone Store on Rails. With custom authorization using AngularJS cookies and MicroToken gem.
 
+<h2>Collaborators</h2>
+
+https://github.com/brayzen (Collaborated on implementing authorization.)
+
+https://github.com/yang70/ (Showed me how to create reviews for products.)
+
 <h2>Resources</h2>
 
 https://www.codeschool.com/courses/shaping-up-with-angular-js

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   namespace :api do
     resource :session, only: [:create, :show, :destroy]
     resources :products
+    resources :reviews
   end
 
   root 'products#index'
