@@ -6,7 +6,7 @@ class Api::ReviewsController < Api::ApiController
     if review.save
       render json: review, status: :created
     else
-      render json: {"error": "Could not create review."}, status: :unprocessable_entity
+      render json: {"error" => "Could not create review."}, status: :unprocessable_entity
     end
   end
 
