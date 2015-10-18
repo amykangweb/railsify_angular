@@ -93,10 +93,21 @@
         });
       };
 
-    $scope.update = function(product) {
-      $http.path('api/products' + product.id, { product: product })
-        .success(function(data) {
+    this.showform;
 
+    $scope.editForm = function(product){
+      if(product.showform){
+        product.showform = false;
+      }else{
+        product.showform = true;
+      };
+    };
+
+    $scope.update = function(product) {
+      $http.patch('api/products' + '/' + product.id, { api_secret: $scope.token, username: $scope.username, product: product })
+        .success(function(data) {
+          $scope.product = data.product;
+          product.showform = false;
       }).error(function(data) {
         alert("Something went wrong.");
         $scope.errors;
