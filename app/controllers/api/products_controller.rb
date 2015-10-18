@@ -25,6 +25,15 @@ class Api::ProductsController < Api::ApiController
     end
   end
 
+  def destroy
+    if create_product?
+      @product.destroy
+      render json: {"notice": "Gem successfully destroyed."}
+    else
+      render json: {"error": "Could not update gem, check validations"}, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def find_user

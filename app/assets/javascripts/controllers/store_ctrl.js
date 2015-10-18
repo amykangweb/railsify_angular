@@ -74,7 +74,6 @@
       });
     };
 
-
     $scope.index = function(){
       $http.get('api/products').success(function(data){
         $scope.products = data.products;
@@ -85,7 +84,7 @@
         $http.post("api/products", { api_secret: $scope.token, username: $scope.username, product: product })
           .success(function(data) {
             $scope.products.push(data.product);
-            $scope.newGem.$setPristine();
+            $scope.newProduct = {};
         })
         .error(function(data) {
           alert("Something went wrong.");
@@ -108,6 +107,19 @@
         .success(function(data) {
           $scope.product = data.product;
           product.showform = false;
+      }).error(function(data) {
+        alert("Something went wrong.");
+        $scope.errors;
+      });
+    };
+
+    $scope.destroy = function(product) {
+      $http.delete('api/products' + '/' + product.id + "?api_secret=" + $scope.token + "&username=" + $scope.username)
+        .success(function(data) {
+          var index = $scope.products.indexOf(product);
+          if(index !== -1){
+            $scope.products.splice(index, 1);
+          }
       }).error(function(data) {
         alert("Something went wrong.");
         $scope.errors;
