@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-  resources :users
-  resources :products
   namespace :api do
-    resources :sessions, only: [:create, :show, :destroy]
-    resources :products
+    resource :session, only: [:create, :show, :destroy]
+    resources :products, only: [:create, :update, :index, :destroy]
+    resources :reviews
   end
 
   root 'products#index'
