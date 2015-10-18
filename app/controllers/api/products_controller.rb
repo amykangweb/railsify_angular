@@ -12,7 +12,7 @@ class Api::ProductsController < Api::ApiController
       product.save
       render json: product, status: :created
     else
-      render json: {"error": "Could not create gem, check validations"}, status: :unprocessable_entity
+      render json: {"error" => "Could not create gem, check validations"}, status: :unprocessable_entity
     end
   end
 
@@ -21,16 +21,16 @@ class Api::ProductsController < Api::ApiController
       @product.update(product_params)
       render json: @product, status: :created
     else
-      render json: {"error": "Could not update gem, check validations"}, status: :unprocessable_entity
+      render json: {"error" => "Could not update gem, check validations"}, status: :unprocessable_entity
     end
   end
 
   def destroy
     if create_product?
       @product.destroy
-      render json: {"notice": "Gem successfully destroyed."}
+      render json: {"notice" => "Gem successfully destroyed."}
     else
-      render json: {"error": "Could not update gem, check validations"}, status: :unprocessable_entity
+      render json: {"error" => "Could not update gem, check validations"}, status: :unprocessable_entity
     end
   end
 

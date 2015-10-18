@@ -5,10 +5,12 @@
 </h3>
 
 <div ng-show="isAdmin()">
-  <p>
-    <button ng-click="editForm(product)">Edit</button>&nbsp;
-    <button ng-click="destroy(product)">Destroy</button>
-  </p>
+  <div ng-hide="product.showform">
+    <p>
+      <button ng-click="editForm(product)">Edit</button>&nbsp;
+      <button ng-click="destroy(product)">Destroy</button>
+    </p>
+  </div>
 
   <div ng-show="product.showform">
     <button ng-click="editForm(product)" class="pull-right">Cancel</button>

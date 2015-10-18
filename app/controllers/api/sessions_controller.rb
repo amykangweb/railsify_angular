@@ -5,9 +5,9 @@ class Api::SessionsController < Api::ApiController
     if @user.is_password?(params[:password])
       @user.api_secret = generate_token
       @user.save
-      render json: { "token": @user.api_secret, "user": @user }
+      render json: { "token" => @user.api_secret, "user" => @user }
     else
-      render json: { "error": "Username\Password combination invalid." }
+      render json: { "error" => "Username\Password combination invalid." }
     end
   end
 
@@ -15,7 +15,7 @@ class Api::SessionsController < Api::ApiController
     @user = User.find_by_username(params[:username])
     @user.api_secret = generate_token
     @user.save
-    render json: { "message": "Logged out successfully." }
+    render json: { "message" => "Logged out successfully." }
   end
 
   private
