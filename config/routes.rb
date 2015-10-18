@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   namespace :api do
-    delete 'sessions' => 'sessions#destroy'
-    resources :sessions, only: [:create, :show, :destroy]
+    resource :session, only: [:create, :show, :destroy]
     resources :products
   end
 

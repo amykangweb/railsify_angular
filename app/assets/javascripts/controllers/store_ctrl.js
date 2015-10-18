@@ -33,8 +33,18 @@
       }
     };
 
+    // http://stackoverflow.com/questions/12624181/angularjs-how-to-set-expiration-date-for-cookie-in-angularjs/28854854#28854854
+
+    // var now = new Date(),
+    //     // this will set the expiration to 12 months
+    //     exp = new Date(now.getFullYear()+1, now.getMonth(), now.getDate());
+
+    // $cookies.put('someToken','blabla',{
+    //   expires: exp
+    // });
+
    $scope.session = function(user){
-      $http.post('api/sessions?username=' + user.username + "&password=" + user.password).success(function(data){
+      $http.post('api/session', { username: user.username, password: user.password }).success(function(data){
         $cookies.put('loggedin', 'true');
         $cookies.put('username', data.user.username);
         $cookies.put('admin', data.user.admin);
@@ -49,7 +59,7 @@
     };
 
     $scope.logout = function(username){
-      $http.delete('api/sessions?username=' + $scope.username).success(function(data){
+      $http.delete('api/session?username=' + $scope.username).success(function(data){
         $scope.username = "none";
         $cookies.remove('loggedin');
         $cookies.put('username', 'none');
@@ -72,7 +82,7 @@
     };
 
     $scope.create = function(product) {
-        $http.post("api/products?api_secret=" + $scope.token + "&username=" + $scope.username, { product: product })
+        $http.post("api/products", { api_secret: $scope.token, username: $scope.username, product: product })
           .success(function(data) {
             $scope.products.push(data.product);
             $scope.newGem.$setPristine();
