@@ -21,7 +21,7 @@ class Api::ProductsController < Api::ApiController
       @product.update(product_params)
       render json: @product, status: :created
     else
-      render json: {"error" => "Could not update gem, check validations"}, status: :unprocessable_entity
+      render json: @product.errors, status: :unprocessable_entity
     end
   end
 
