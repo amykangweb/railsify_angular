@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe Api::ProductsController do
-  fixtures :products
 
   before do
     allow(@controller).to receive(:create_product?).and_return(true)
