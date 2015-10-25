@@ -7,7 +7,7 @@ class Api::SessionsController < Api::ApiController
       @user.save
       render json: { "token" => @user.api_secret, "user" => @user }
     else
-      render json: { "error" => "Username\Password combination invalid." }
+      render json: { "error" => "Username, Password combination invalid." }
     end
   end
 
